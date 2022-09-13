@@ -1,2 +1,7 @@
 org\rivera\webapp\jsf3\controllers\ProductoController.class
 org\rivera\webapp\jsf3\entities\Producto.class
+org\rivera\webapp\jsf3\repositories\CrudRepository.class
+org\rivera\webapp\jsf3\services\ProductoServiceImp.class
+org\rivera\webapp\jsf3\ProducerEntityManager.class
+org\rivera\webapp\jsf3\repositories\ProductoRepositoryImp.class
+org\rivera\webapp\jsf3\services\ProductoService.class
