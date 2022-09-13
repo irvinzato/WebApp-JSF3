@@ -69,4 +69,20 @@ public class Producto {
   public void setSku(String sku) {
     this.sku = sku;
   }
+
+  @PrePersist
+  public void prePersist() {
+    this.registerDate = LocalDate.now();
+  }
+
+  @Override
+  public String toString() {
+    return "Producto{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", price=" + price +
+            ", registerDate=" + registerDate +
+            ", sku='" + sku + '\'' +
+            '}';
+  }
 }

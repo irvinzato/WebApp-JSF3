@@ -9,41 +9,44 @@
 </h:head>
 
 <h:body>
-<h3>Framework JSF3, dos formas de obtener valores de los controladores, el titulo puse una y en h2</h3>
-<h2> <h:outputText value="#{tittle}" /> </h2>
+    <h3>Framework JSF3, dos formas de obtener valores de los controladores, el titulo puse una y en h2</h3>
+    <h2> <h:outputText value="#{tittle}" /> </h2>
 
-<h:dataTable value="#{listado}" var="prod">
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="ID" />
-        </f:facet>
-        <h:outputText value="#{prod.id}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Nombre" />
-        </f:facet>
-        <h:outputText value="#{prod.name}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="SKU" />
-        </f:facet>
-        <h:outputText value="#{prod.sku}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Precio" />
-        </f:facet>
-        <h:outputText value="#{prod.price}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Fecha de registro" />
-        </f:facet>
-        <h:outputText value="#{prod.registerDate}" />
-    </h:column>
-</h:dataTable>
+    <h:form>
+        <h:commandButton value="Crear producto" action="form.xhtml" /> <!-- Enlace para ir a otra vista -->
+    </h:form>
+    <h:dataTable value="#{listado}" var="prod">
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{prod.id}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Nombre" />
+            </f:facet>
+            <h:outputText value="#{prod.name}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="SKU" />
+            </f:facet>
+            <h:outputText value="#{prod.sku}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Precio" />
+            </f:facet>
+            <h:outputText value="#{prod.price}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Fecha de registro" />
+            </f:facet>
+            <h:outputText value="#{prod.registerDate}" />
+        </h:column>
+    </h:dataTable>
 
 </h:body>
 </html>

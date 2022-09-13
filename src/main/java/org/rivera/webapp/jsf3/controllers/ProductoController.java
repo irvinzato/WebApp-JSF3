@@ -16,10 +16,12 @@ public class ProductoController {
   @Inject
   private ProductoService service;
 
-  @Produces //Para pasar datos a la vista
+  private Producto product;
+
+  @Produces //Para pasar datos a la vista(creación en el contexto)
   @Model    //Por defecto toma el nombre del método/clase
   public String tittle() {
-    return "Aprendamos JavaServerFace 3";
+    return "Aprendamos JavaServerFaces 3";
   }
 
   @Produces
@@ -29,5 +31,17 @@ public class ProductoController {
     return service.toListProducts();
   }
 
+  @Produces
+  @Model  //Por alguna razón con "getProduct" tomaba también "product"
+  public Producto product() {
+    this.product = new Producto();
+    return this.product;
+  }
+
+  public String save() {
+    System.out.println(product);
+    // service.save(product);
+    return "index.xhtml?faces-redirect=true"; //Para poder redireccionar(Navegación en JSF)
+  }
 
 }

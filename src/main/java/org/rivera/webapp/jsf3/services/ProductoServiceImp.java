@@ -21,11 +21,7 @@ public class ProductoServiceImp implements ProductoService{
 
   @Override
   public Optional<Producto> productById(Long id) {
-    try{
-      return Optional.of(repository.byId(id));
-    } catch (Exception e) {
-      return Optional.empty();
-    }
+    return Optional.ofNullable(repository.byId(id));
   }
 
 }
