@@ -24,4 +24,14 @@ public class ProductoServiceImp implements ProductoService{
     return Optional.ofNullable(repository.byId(id));
   }
 
+  @Override
+  public void saveProduct(Producto producto) {
+    repository.save(producto);
+  }
+
+  @Override
+  public void deleteProduct(Long id) {
+    repository.delete(id);
+  }
+
 }

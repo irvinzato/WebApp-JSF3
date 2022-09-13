@@ -39,8 +39,8 @@ public class ProductoController {
   }
 
   public String save() {
+    service.saveProduct(product);
     System.out.println(product);
-    // service.save(product);
     return "index.xhtml?faces-redirect=true"; //Para poder redireccionar(Navegación en JSF)
   }
 

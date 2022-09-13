@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ProductoService {
   List<Producto> toListProducts();
   Optional<Producto> productById(Long id);
+  void saveProduct(Producto producto);
+  void deleteProduct(Long id);
 }

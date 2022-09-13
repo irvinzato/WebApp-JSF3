@@ -9,25 +9,30 @@
 </h:head>
 
 <h:body>
-    <h2> <h:outputText value="Formulario Producto" /> </h2>
 
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel value="Nombre" for="nombre" />
-            <h:inputText id="nombre" value="#{product.name}" />
+    <h:panelGrid border="1">
+        <f:facet name="header">
+            <h:outputText value="Formulario Producto" />
+        </f:facet>
 
-            <h:outputLabel value="Precio" for="precio" />
-            <h:inputText id="precio" value="#{product.price}" />
+        <h:link value="Regresar" outcome="index" />
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nombre" for="nombre" />
+                <h:inputText id="nombre" value="#{product.name}" />
 
-            <h:outputLabel value="Sku" for="sku" />
-            <h:inputText id="sku" value="#{product.sku}" />
+                <h:outputLabel value="Precio" for="precio" />
+                <h:inputText id="precio" value="#{product.price}" />
 
-            <h:commandButton value="Crear" action="#{productoController.save}" /> <!-- action apunta al controlador -->
+                <h:outputLabel value="Sku" for="sku" />
+                <h:inputText id="sku" value="#{product.sku}" />
 
-            <h:inputHidden value="#{product.id}" />
+                <h:commandButton value="Crear" action="#{productoController.save}" /> <!-- action apunta al controlador -->
 
-        </h:panelGrid>
-    </h:form>
+                <h:inputHidden value="#{product.id}" />
+            </h:panelGrid>
+        </h:form>
+    </h:panelGrid>
 
 </h:body>
 </html>

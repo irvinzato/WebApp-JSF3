@@ -24,4 +24,18 @@ public class ProductoRepositoryImp implements CrudRepository<Producto>{
     return em.find(Producto.class, id);
   }
 
+  @Override
+  public void save(Producto producto) {
+    if( producto.getId() != null && producto.getId() > 0 ) {
+      em.merge(producto);
+    } else {
+      em.persist(producto);
+    }
+  }
+
+  @Override
+  public void delete(Long id) {
+    em.remove(byId(id));
+  }
+
 }
