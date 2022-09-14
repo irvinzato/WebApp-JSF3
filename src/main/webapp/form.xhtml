@@ -31,6 +31,12 @@
                 <h:outputLabel value="Sku" for="sku" />
                 <h:inputText id="sku" value="#{product.sku}" required="true" label="SKU"/>
 
+                <h:outputLabel value="Categoria" for="categoria" />
+                <h:selectOneMenu id="categoria" value="#{product.category}" >
+                    <f:selectItem itemLabel="--- seleccione una categoria ---" itemValue="#{null}" />
+                    <f:selectItems value="#{listCategories}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
+                </h:selectOneMenu>
+
                 <h:outputLabel value="Fecha" for="registerDate" />
                 <h:inputText id="registerDate" value="#{product.registerDate}" label="Fecha registro"
                              required="true" convertMessage="Indique la fecha con yyyy-MM-dd">

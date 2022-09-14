@@ -21,6 +21,10 @@ public class Producto {
   @Column(name = "fecha_registro")
   private LocalDate registerDate;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "categoria_id")  //Si no pongo el JoinColum toma valor por defecto con _id
+  private Categoria category;
+
   private String sku;
 
   public Producto() {
@@ -70,7 +74,15 @@ public class Producto {
     this.sku = sku;
   }
 
-/*  Puedo usar esta forma para trabajar con las fechas, hago otra diferente en "form.xhtml" para registerDate
+  public Categoria getCategory() {
+    return category;
+  }
+
+  public void setCategory(Categoria category) {
+    this.category = category;
+  }
+
+  /*  Puedo usar esta forma para trabajar con las fechas, hago otra diferente en "form.xhtml" para registerDate
 @PrePersist
   public void prePersist() {
     this.registerDate = LocalDate.now();

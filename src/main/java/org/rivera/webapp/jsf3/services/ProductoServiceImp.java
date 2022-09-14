@@ -2,6 +2,7 @@ package org.rivera.webapp.jsf3.services;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import org.rivera.webapp.jsf3.entities.Categoria;
 import org.rivera.webapp.jsf3.entities.Producto;
 import org.rivera.webapp.jsf3.repositories.CrudRepository;
 
@@ -13,6 +14,9 @@ public class ProductoServiceImp implements ProductoService{
 
   @Inject
   private CrudRepository<Producto> repository;
+
+  @Inject
+  private CrudRepository<Categoria> repositoryCategory;
 
   @Override
   public List<Producto> toListProducts() {
@@ -32,6 +36,16 @@ public class ProductoServiceImp implements ProductoService{
   @Override
   public void deleteProduct(Long id) {
     repository.delete(id);
+  }
+
+  @Override
+  public List<Categoria> toListCategories() {
+    return repositoryCategory.toList();
+  }
+
+  @Override
+  public Optional<Categoria> categoryById(Long id) {
+    return Optional.ofNullable(repositoryCategory.byId(id));
   }
 
 }

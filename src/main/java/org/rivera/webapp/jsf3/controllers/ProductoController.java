@@ -5,6 +5,7 @@ import jakarta.enterprise.inject.Model;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.rivera.webapp.jsf3.entities.Categoria;
 import org.rivera.webapp.jsf3.entities.Producto;
 import org.rivera.webapp.jsf3.services.ProductoService;
 
@@ -29,6 +30,13 @@ public class ProductoController {
   @Named("listado")   //Con Model no se puede personalizar el nombre, se debe hacer asi
   public List<Producto> findAll() {
     return service.toListProducts();
+  }
+
+  @Produces
+  @RequestScoped
+  @Named("listCategories")
+  public List<Categoria> findCategories() {
+    return service.toListCategories();
   }
 
   @Produces
