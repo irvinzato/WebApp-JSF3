@@ -6,4 +6,5 @@ org\rivera\webapp\jsf3\services\ProductoServiceImp.class
 org\rivera\webapp\jsf3\ProducerEntityManager.class
 org\rivera\webapp\jsf3\repositories\ProductoRepositoryImp.class
 org\rivera\webapp\jsf3\repositories\CategoriaRepositoryImp.class
+org\rivera\webapp\jsf3\converters\CategoriaConverter.class
 org\rivera\webapp\jsf3\services\ProductoService.class

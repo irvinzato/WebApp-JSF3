@@ -34,7 +34,8 @@
                 <h:outputLabel value="Categoria" for="categoria" />
                 <h:selectOneMenu id="categoria" value="#{product.category}" >
                     <f:selectItem itemLabel="--- seleccione una categoria ---" itemValue="#{null}" />
-                    <f:selectItems value="#{listCategories}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
+                    <f:selectItems value="#{listCategories}" var="cat" itemLabel="#{cat.name}" />
+                    <f:converter binding="#{categoriaConverter}" />  <!-- Enlazado a clase en mi paquete "converters" -->
                 </h:selectOneMenu>
 
                 <h:outputLabel value="Fecha" for="registerDate" />

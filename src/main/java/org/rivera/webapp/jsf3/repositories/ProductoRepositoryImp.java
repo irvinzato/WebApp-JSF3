@@ -13,15 +13,19 @@ public class ProductoRepositoryImp implements CrudRepository<Producto>{
   @Inject
   private EntityManager em;
 
+  //Debo modificar las consultas porque necesito que de una vez traiga las categorias(De la otra manera es LAZY y estaría cerrada la session)
   @Override
   public List<Producto> toList() {
-    return em.createQuery("FROM Producto", Producto.class)
+    return em.createQuery("SELECT p FROM Producto p LEFT OUTER JOIN FETCH p.category", Producto.class)
             .getResultList();
   }
 
   @Override
   public Producto byId(Long id) {
-    return em.find(Producto.class, id);
+    //return em.find(Producto.class, id);
+    return em.createQuery("SELECT p FROM Producto p LEFT OUTER JOIN FETCH p.category WHERE p.id=:idParam", Producto.class)
+            .setParameter("idParam", id)
+            .getSingleResult();
   }
 
   @Override
