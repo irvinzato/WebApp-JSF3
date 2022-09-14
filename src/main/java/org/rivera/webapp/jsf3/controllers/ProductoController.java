@@ -12,6 +12,7 @@ import org.rivera.webapp.jsf3.entities.Producto;
 import org.rivera.webapp.jsf3.services.ProductoService;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 @Model  //Estereotipo que incluye @Named y @RequestScoped
 public class ProductoController {
@@ -21,13 +22,16 @@ public class ProductoController {
   @Inject //Para mensajes Flash
   private FacesContext facesContext;
 
+  @Inject //Para selección de idiomas
+  private ResourceBundle bundle;
+
   private Producto product;
   private Long id;
 
   @Produces //Para pasar datos a la vista(creación en el contexto)
   @Model    //Por defecto toma el nombre del método/clase
   public String tittle() {
-    return "Aprendamos JavaServerFaces 3";
+    return bundle.getString("product.text.tittle"); //Por la inyección del "ResourceBundle" puedo ocuparlo
   }
 
   @Produces
@@ -60,9 +64,9 @@ public class ProductoController {
     System.out.println(product);
     service.saveProduct(product);
     if( product.getId() != null && product.getId() > 0 ) {
-      facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " actualizado con éxito"));  //Puedo pasarle más parámetros a la instancia, dependiendo si es error, alerta, etc.
+      facesContext.addMessage(null, new FacesMessage(String.format(bundle.getString("product.msg.edit"), product.getName())));  //Puedo pasarle más parámetros a la instancia, dependiendo si es error, alerta, etc.
     } else {
-      facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " creado con éxito"));
+      facesContext.addMessage(null, new FacesMessage(String.format(bundle.getString("product.msg.create"), product.getName())));
     }
     return "index.xhtml?faces-redirect=true"; //Para poder redireccionar(Navegación en JSF)
   }
@@ -74,7 +78,7 @@ public class ProductoController {
 
   public String delete(Producto product) {
     service.deleteProduct(product.getId());
-    facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " eliminado con éxito"));
+    facesContext.addMessage(null, new FacesMessage(String.format(bundle.getString("product.msg.delete"), product.getName())));
     return "index.xhtml?faces-redirect=true";
   }
 
