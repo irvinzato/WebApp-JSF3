@@ -12,11 +12,11 @@ import java.util.List;
 
 @Model  //Estereotipo que incluye @Named y @RequestScoped
 public class ProductoController {
-
   @Inject
   private ProductoService service;
 
   private Producto product;
+  private Long id;
 
   @Produces //Para pasar datos a la vista(creación en el contexto)
   @Model    //Por defecto toma el nombre del método/clase
@@ -32,9 +32,14 @@ public class ProductoController {
   }
 
   @Produces
-  @Model  //Por alguna razón con "getProduct" tomaba también "product"
+  @Model  //Por alguna razón con "getProduct" tomaba también "product", lo ocupo en "form.xhtml"
   public Producto product() {
     this.product = new Producto();
+    if( id != null && id > 0 ) {
+     service.productById(id).ifPresent( p -> {
+       this.product = p;
+     });
+    }
     return this.product;
   }
 
@@ -44,4 +49,22 @@ public class ProductoController {
     return "index.xhtml?faces-redirect=true"; //Para poder redireccionar(Navegación en JSF)
   }
 
+  public String edit(Long id) {
+    this.id = id;
+    return "form.xhtml";
+  }
+
+  public String delete(Long id) {
+    service.deleteProduct(id);
+    return "index.xhtml?faces-redirect=true";
+  }
+
+  //Los get y set no los llamo explícitamente pero al llamar "id" desde mis "xhtml" hace uso de ellos
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }

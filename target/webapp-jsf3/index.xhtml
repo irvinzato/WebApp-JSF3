@@ -52,6 +52,31 @@
                 </f:facet>
                 <h:outputText value="#{prod.registerDate}" />
             </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Editar" />
+                </f:facet>
+                <h:form id="editForm">
+                    <h:commandLink value="Editar" action="#{productoController.edit(prod.id)}" />
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Editar 2" />
+                </f:facet>
+                <h:link value="Editar 2" outcome="form" >
+                    <f:param name="id" value="#{prod.id}" />
+                </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Eliminar" />
+                </f:facet>
+                <h:form id="deleteForm">
+                    <h:commandLink value="Eliminar" action="#{productoController.delete(prod.id)}"
+                    onclick="return confirm('¿Estas seguro de eliminar?')"/>
+                </h:form>
+            </h:column>
         </h:dataTable>
     </h:panelGrid>
 

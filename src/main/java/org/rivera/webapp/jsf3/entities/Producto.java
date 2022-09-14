@@ -75,6 +75,11 @@ public class Producto {
     this.registerDate = LocalDate.now();
   }
 
+  @PreUpdate
+  public void preUpdate() {
+    this.registerDate = LocalDate.now();
+  }
+
   @Override
   public String toString() {
     return "Producto{" +
