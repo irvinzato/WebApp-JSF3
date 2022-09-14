@@ -13,7 +13,6 @@
         <f:viewParam name="id" value="#{productoController.id}" />
     </f:metadata>
 
-    <h:messages style="color:red" />
     <h:panelGrid border="1">
         <f:facet name="header">
             <h:outputText value="#{product.id > 0 ?'Editar' :'Crear'} Producto" />
@@ -21,15 +20,18 @@
 
         <h:link value="Regresar" outcome="index" />
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 <h:outputLabel value="Nombre" for="nombre" />
-                <h:inputText id="nombre" value="#{product.name}" required="true" label="Nombre"/>
+                <h:inputText id="nombre" value="#{product.name}" label="Nombre"/>
+                <h:message for="nombre" style="color:red" />
 
                 <h:outputLabel value="Precio" for="precio" />
-                <h:inputText id="precio" value="#{product.price}" required="true" label="Precio"/>
+                <h:inputText id="precio" value="#{product.price}" label="Precio"/>
+                <h:message for="precio" style="color:red" />
 
                 <h:outputLabel value="Sku" for="sku" />
-                <h:inputText id="sku" value="#{product.sku}" required="true" label="SKU"/>
+                <h:inputText id="sku" value="#{product.sku}" label="SKU"/>
+                <h:message for="sku" style="color:red" />
 
                 <h:outputLabel value="Categoria" for="categoria" />
                 <h:selectOneMenu id="categoria" value="#{product.category}" >
@@ -37,13 +39,15 @@
                     <f:selectItems value="#{listCategories}" var="cat" itemLabel="#{cat.name}" />
                     <f:converter binding="#{categoriaConverter}" />  <!-- Enlazado a clase en mi paquete "converters" -->
                 </h:selectOneMenu>
+                <h:message for="categoria" style="color:red" />
 
                 <h:outputLabel value="Fecha" for="registerDate" />
                 <h:inputText id="registerDate" value="#{product.registerDate}" label="Fecha registro"
-                             required="true" convertMessage="Indique la fecha con yyyy-MM-dd">
+                             convertMessage="Indique la fecha con yyyy-MM-dd">
                     <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
                     <f:passThroughAttribute name="type" value="date" />
                 </h:inputText>
+                <h:message for="registerDate" style="color:red" />
 
                 <h:commandButton value="#{product.id > 0 ?'Editar' :'Crear'}" action="#{productoController.save}" /> <!-- action apunta al controlador -->
 

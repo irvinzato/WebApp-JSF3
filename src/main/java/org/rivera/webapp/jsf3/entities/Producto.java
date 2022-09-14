@@ -1,6 +1,7 @@
 package org.rivera.webapp.jsf3.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -12,19 +13,27 @@ public class Producto {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotEmpty   //Otra forma de validar los campos del formulario(Quite los "required="true" y puse anotaciones)
   @Column(name = "nombre")
   private String name;
 
+  @NotNull    //Para objetos
+  @Min(50)
+  @Max(100000)
   @Column(name = "precio")
   private Integer price;
 
+  @NotNull
   @Column(name = "fecha_registro")
   private LocalDate registerDate;
 
+  @NotNull(message = "Debe seleccionar una categoria") //Todas las anotaciones tienen la variable "message"
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "categoria_id")  //Si no pongo el JoinColum toma valor por defecto con _id
   private Categoria category;
 
+  @NotEmpty   //Para strings
+  @Size(min = 4, max = 10)
   private String sku;
 
   public Producto() {

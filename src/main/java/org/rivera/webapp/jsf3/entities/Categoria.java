@@ -36,7 +36,7 @@ public class Categoria {
     this.name = name;
   }
 
-  @Override
+  @Override //Util para cuando quiero editar un Producto me muestre su categoria seleccionada
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
