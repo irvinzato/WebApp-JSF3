@@ -13,24 +13,32 @@
         <f:viewParam name="id" value="#{productoController.id}" />
     </f:metadata>
 
+    <h:messages style="color:red" />
     <h:panelGrid border="1">
         <f:facet name="header">
-            <h:outputText value="Formulario Producto" />
+            <h:outputText value="#{product.id > 0 ?'Editar' :'Crear'} Producto" />
         </f:facet>
 
         <h:link value="Regresar" outcome="index" />
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nombre" for="nombre" />
-                <h:inputText id="nombre" value="#{product.name}" />
+                <h:inputText id="nombre" value="#{product.name}" required="true" label="Nombre"/>
 
                 <h:outputLabel value="Precio" for="precio" />
-                <h:inputText id="precio" value="#{product.price}" />
+                <h:inputText id="precio" value="#{product.price}" required="true" label="Precio"/>
 
                 <h:outputLabel value="Sku" for="sku" />
-                <h:inputText id="sku" value="#{product.sku}" />
+                <h:inputText id="sku" value="#{product.sku}" required="true" label="SKU"/>
 
-                <h:commandButton value="Crear" action="#{productoController.save}" /> <!-- action apunta al controlador -->
+                <h:outputLabel value="Fecha" for="registerDate" />
+                <h:inputText id="registerDate" value="#{product.registerDate}" label="Fecha registro"
+                             required="true" convertMessage="Indique la fecha con yyyy-MM-dd">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    <f:passThroughAttribute name="type" value="date" />
+                </h:inputText>
+
+                <h:commandButton value="#{product.id > 0 ?'Editar' :'Crear'}" action="#{productoController.save}" /> <!-- action apunta al controlador -->
 
                 <h:inputHidden value="#{product.id}" />
             </h:panelGrid>

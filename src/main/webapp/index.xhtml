@@ -50,7 +50,9 @@
                 <f:facet name="header">
                     <h:outputText value="Fecha de registro" />
                 </f:facet>
-                <h:outputText value="#{prod.registerDate}" />
+                <h:outputText value="#{prod.registerDate}">
+                    <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                </h:outputText>
             </h:column>
             <h:column>
                 <f:facet name="header">

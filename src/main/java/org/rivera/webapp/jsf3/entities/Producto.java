@@ -70,7 +70,8 @@ public class Producto {
     this.sku = sku;
   }
 
-  @PrePersist
+/*  Puedo usar esta forma para trabajar con las fechas, hago otra diferente en "form.xhtml" para registerDate
+@PrePersist
   public void prePersist() {
     this.registerDate = LocalDate.now();
   }
@@ -79,6 +80,7 @@ public class Producto {
   public void preUpdate() {
     this.registerDate = LocalDate.now();
   }
+  */
 
   @Override
   public String toString() {
