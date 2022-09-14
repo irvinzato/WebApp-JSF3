@@ -32,10 +32,14 @@
     </nav>
 
     <div class="container">
+        <!-- Utiliza ProducerResources para configuración de mensajes Flash -->
+        <h:messages globalOnly="true" styleClass="alert" errorClass="alert alert-danger"
+                    infoClass="alert alert-success" warnClass="alert alert-warning" />
+
         <ui:insert name="content" />
         <hr/>
         <footer style="clear: both;">
-            <h:graphicImage value="/resources/img/Yin_yang.png" alt="logo IR" style="size: 100px;"/>
+            <h:graphicImage value="/resources/img/Yin_yang.png" alt="logo IR" />
             <p>Desarrollado por Irving Rivera 2022</p>
             <h:outputScript name="js/bootstrap.bundle.min.js" />
             <ui:insert name="js" />

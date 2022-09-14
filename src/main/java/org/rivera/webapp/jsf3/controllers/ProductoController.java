@@ -3,6 +3,8 @@ package org.rivera.webapp.jsf3.controllers;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.enterprise.inject.Produces;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.rivera.webapp.jsf3.entities.Categoria;
@@ -15,6 +17,9 @@ import java.util.List;
 public class ProductoController {
   @Inject
   private ProductoService service;
+
+  @Inject //Para mensajes Flash
+  private FacesContext facesContext;
 
   private Producto product;
   private Long id;
@@ -52,8 +57,13 @@ public class ProductoController {
   }
 
   public String save() {
-    service.saveProduct(product);
     System.out.println(product);
+    service.saveProduct(product);
+    if( product.getId() != null && product.getId() > 0 ) {
+      facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " actualizado con éxito"));  //Puedo pasarle más parámetros a la instancia, dependiendo si es error, alerta, etc.
+    } else {
+      facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " creado con éxito"));
+    }
     return "index.xhtml?faces-redirect=true"; //Para poder redireccionar(Navegación en JSF)
   }
 
@@ -62,8 +72,9 @@ public class ProductoController {
     return "form.xhtml";
   }
 
-  public String delete(Long id) {
-    service.deleteProduct(id);
+  public String delete(Producto product) {
+    service.deleteProduct(product.getId());
+    facesContext.addMessage(null, new FacesMessage("Producto " + product.getName() + " eliminado con éxito"));
     return "index.xhtml?faces-redirect=true";
   }
 

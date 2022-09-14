@@ -1,4 +1,5 @@
 org\rivera\webapp\jsf3\controllers\ProductoController.class
+org\rivera\webapp\jsf3\ProducerResources.class
 org\rivera\webapp\jsf3\entities\Categoria.class
 org\rivera\webapp\jsf3\entities\Producto.class
 org\rivera\webapp\jsf3\repositories\CrudRepository.class

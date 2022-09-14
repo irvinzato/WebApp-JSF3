@@ -32,6 +32,10 @@
     </nav>
 
     <div class="container">
+        <!-- Utiliza ProducerResources para configuración de mensajes Flash -->
+        <h:messages globalOnly="true" styleClass="alert" errorClass="alert alert-danger"
+                    infoClass="alert alert-success" warnClass="alert alert-warning" />
+
         <ui:insert name="content" />
         <hr/>
         <footer style="clear: both;">
