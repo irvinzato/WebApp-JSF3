@@ -6,87 +6,109 @@
 <h:head>
     <meta charset="UTF-8" />
     <title>#{tittle}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 </h:head>
 
 <h:body>
-    <h:panelGrid border="1">
-        <h3>Framework JSF3, dos formas de obtener valores de los controladores, en titulo puse una y en h2</h3>
-        <f:facet name="header">
-            <h:outputText value="#{tittle}" />
-        </f:facet>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <h:link value="Home" outcome="index" class="nav-link active" />
+                    </li>
+                    <li class="nav-item">
+                        <h:link value="Crear producto" outcome="form" class="nav-link" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <h:form id="createForm">
-            <h:commandButton value="Crear producto" action="form.xhtml" /> <!-- Enlace para ir a otra vista -->
-        </h:form>
+    <div class="container">
+        <h:panelGrid border="1" class="table">
+            <h3>Framework JSF3, dos formas de obtener valores de los controladores, en titulo puse una y en h2</h3>
+            <f:facet name="header">
+                <h:outputText value="#{tittle}" />
+            </f:facet>
 
-        <h:outputText value="No existen productos en la base de datos" rendered="#{empty listado}" />
+            <h:form id="createForm">
+                <h:commandButton value="Crear producto" action="form.xhtml" class="btn btn-primary my-2" /> <!-- Enlace para ir a otra vista -->
+            </h:form>
 
-        <h:dataTable value="#{listado}" var="prod" rendered="#{not empty listado}">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="ID" />
-                </f:facet>
-                <h:outputText value="#{prod.id}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Nombre" />
-                </f:facet>
-                <h:outputText value="#{prod.name}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="SKU" />
-                </f:facet>
-                <h:outputText value="#{prod.sku}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Precio" />
-                </f:facet>
-                <h:outputText value="#{prod.price}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Categoria" />
-                </f:facet>
-                <h:outputText value="#{prod.category.name}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Fecha de registro" />
-                </f:facet>
-                <h:outputText value="#{prod.registerDate}">
-                    <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Editar" />
-                </f:facet>
-                <h:form id="editForm">
-                    <h:commandLink value="Editar" action="#{productoController.edit(prod.id)}" />
-                </h:form>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Editar 2" />
-                </f:facet>
-                <h:link value="Editar 2" outcome="form" >
-                    <f:param name="id" value="#{prod.id}" />
-                </h:link>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Eliminar" />
-                </f:facet>
-                <h:form id="deleteForm">
-                    <h:commandLink value="Eliminar" action="#{productoController.delete(prod.id)}"
-                    onclick="return confirm('¿Estas seguro de eliminar?')"/>
-                </h:form>
-            </h:column>
-        </h:dataTable>
-    </h:panelGrid>
+            <h:outputText value="No existen productos en la base de datos" rendered="#{empty listado}" class="alert alert-warning" />
+
+            <h:dataTable value="#{listado}" var="prod" rendered="#{not empty listado}" class="table table-hover table-striped">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID" />
+                    </f:facet>
+                    <h:outputText value="#{prod.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre" />
+                    </f:facet>
+                    <h:outputText value="#{prod.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="SKU" />
+                    </f:facet>
+                    <h:outputText value="#{prod.sku}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Precio" />
+                    </f:facet>
+                    <h:outputText value="#{prod.price}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Categoria" />
+                    </f:facet>
+                    <h:outputText value="#{prod.category.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Fecha de registro" />
+                    </f:facet>
+                    <h:outputText value="#{prod.registerDate}">
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Editar" />
+                    </f:facet>
+                    <h:form id="editForm">
+                        <h:commandLink value="Editar" action="#{productoController.edit(prod.id)}" class="btn btn-sm btn-success" />
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Editar 2" />
+                    </f:facet>
+                    <h:link value="Editar 2" outcome="form" class="btn btn-sm btn-info" >
+                        <f:param name="id" value="#{prod.id}" />
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Eliminar" />
+                    </f:facet>
+                    <h:form id="deleteForm">
+                        <h:commandLink value="Eliminar" action="#{productoController.delete(prod.id)}"
+                        onclick="return confirm('¿Estas seguro de eliminar?')" class="btn btn-sm btn-danger"/>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </h:panelGrid>
+    </div>
 
 </h:body>
 </html>
