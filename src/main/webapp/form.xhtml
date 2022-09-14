@@ -15,25 +15,25 @@
 
         <h:panelGrid border="1" class="table">
             <f:facet name="header">
-                <h:outputText value="#{product.id > 0 ?'Editar' :'Crear'} Producto"/>
+                <h:outputText value="#{product.id > 0 ?msg['product.button.edit'] :msg['product.button.create']} #{msg['product.text']}"/>
             </f:facet>
 
-            <h:link value="Regresar" outcome="index" class="btn btn-sm btn-primary my-2"/>
+            <h:link value="#{msg['product.button.return']}" outcome="index" class="btn btn-sm btn-primary my-2"/>
             <h:form>
                 <h:panelGrid columns="3" class="table table-hover table-striped">
-                    <h:outputLabel value="Nombre" for="nombre" class="col-form-label"/>
+                    <h:outputLabel value="#{msg['product.name']}" for="nombre" class="col-form-label"/>
                     <h:inputText id="nombre" value="#{product.name}" label="Nombre" class="form-control"/>
                     <h:message for="nombre" style="color:red"/>
 
-                    <h:outputLabel value="Precio" for="precio" class="col-form-label"/>
+                    <h:outputLabel value="#{msg['product.price']}" for="precio" class="col-form-label"/>
                     <h:inputText id="precio" value="#{product.price}" label="Precio" class="form-control"/>
                     <h:message for="precio" style="color:red"/>
 
-                    <h:outputLabel value="Sku" for="sku" class="col-form-label"/>
+                    <h:outputLabel value="#{msg['product.sku']}" for="sku" class="col-form-label"/>
                     <h:inputText id="sku" value="#{product.sku}" label="SKU" class="form-control"/>
                     <h:message for="sku" style="color:red"/>
 
-                    <h:outputLabel value="Categoria" for="categoria" class="col-form-label"/>
+                    <h:outputLabel value="#{msg['product.category']}" for="categoria" class="col-form-label"/>
                     <h:selectOneMenu id="categoria" value="#{product.category}" class="form-select">
                         <f:selectItem itemLabel="--- seleccione una categoria ---" itemValue="#{null}"/>
                         <f:selectItems value="#{listCategories}" var="cat" itemLabel="#{cat.name}"/>
@@ -42,7 +42,7 @@
                     </h:selectOneMenu>
                     <h:message for="categoria" style="color:red"/>
 
-                    <h:outputLabel value="Fecha" for="registerDate" class="col-form-label"/>
+                    <h:outputLabel value="#{msg['product.registerDate']}" for="registerDate" class="col-form-label"/>
                     <h:inputText id="registerDate" value="#{product.registerDate}" label="Fecha registro"
                                  convertMessage="Indique la fecha con yyyy-MM-dd" class="form-control">
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
@@ -50,7 +50,7 @@
                     </h:inputText>
                     <h:message for="registerDate" style="color:red"/>
 
-                    <h:commandButton value="#{product.id > 0 ?'Editar' :'Crear'}" action="#{productoController.save}"
+                    <h:commandButton value="#{product.id > 0 ?msg['product.button.edit'] :msg['product.button.create']}" action="#{productoController.save}"
                                      class="btn btn-primary"/> <!-- action apunta al controlador -->
                     <h:inputHidden value="#{product.id}"/>
 

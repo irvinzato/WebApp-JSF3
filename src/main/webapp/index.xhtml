@@ -13,7 +13,7 @@
             <h3>Framework JSF3, dos formas de obtener valores de los controladores, en titulo puse una y en h2</h3>
 
             <h:form id="createForm">
-                <h:commandButton value="Crear producto" action="form.xhtml"
+                <h:commandButton value="#{msg['navbar.text.create']}" action="form.xhtml"
                                  class="btn btn-primary my-2"/> <!-- Enlace para ir a otra vista -->
             </h:form>
 
@@ -24,37 +24,37 @@
                          class="table table-hover table-striped">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="ID"/>
+                        <h:outputText value="#{msg['product.id']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.id}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Nombre"/>
+                        <h:outputText value="#{msg['product.name']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.name}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="SKU"/>
+                        <h:outputText value="#{msg['product.sku']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.sku}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Precio"/>
+                        <h:outputText value="#{msg['product.price']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.price}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Categoria"/>
+                        <h:outputText value="#{msg['product.category']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.category.name}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Fecha de registro"/>
+                        <h:outputText value="#{msg['product.registerDate']}"/>
                     </f:facet>
                     <h:outputText value="#{prod.registerDate}">
                         <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
@@ -62,27 +62,27 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Editar"/>
+                        <h:outputText value="#{msg['product.button.edit']}"/>
                     </f:facet>
                     <h:form id="editForm">
-                        <h:commandLink value="Editar" action="#{productoController.edit(prod.id)}"
+                        <h:commandLink value="#{msg['product.button.edit']}" action="#{productoController.edit(prod.id)}"
                                        class="btn btn-sm btn-success"/>
                     </h:form>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Editar 2"/>
+                        <h:outputText value="#{msg['product.button.edit']}"/>
                     </f:facet>
-                    <h:link value="Editar 2" outcome="form" class="btn btn-sm btn-info">
+                    <h:link value="#{msg['product.button.edit']}" outcome="form" class="btn btn-sm btn-info">
                         <f:param name="id" value="#{prod.id}"/>
                     </h:link>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Eliminar"/>
+                        <h:outputText value="#{msg['product.button.delete']}"/>
                     </f:facet>
                     <h:form id="deleteForm">
-                        <h:commandLink value="Eliminar" action="#{productoController.delete(prod)}"
+                        <h:commandLink value="#{msg['product.button.delete']}" action="#{productoController.delete(prod)}"
                                        onclick="return confirm('¿Estas seguro de eliminar?')"
                                        class="btn btn-sm btn-danger"/>
                     </h:form>
